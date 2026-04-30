@@ -1,122 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { TrendingList } from './presentation/components/trending/trending-list';
+import { BarChart3, Globe2, Link2, Zap } from 'lucide-react';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="min-h-screen bg-slate-950 text-slate-50">
+      {/* Header Fixo */}
+      <header className="sticky top-0 z-10 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div className="rounded-lg bg-brand-primary p-1.5">
+                <Link2 className="text-slate-950" size={20} strokeWidth={3} />
+              </div>
+              <span className="text-xl font-black tracking-tight">
+                URL<span className="text-brand-primary">SHRT</span>
+              </span>
+            </div>
+            
+            <nav className="hidden md:block">
+              <ul className="flex gap-8 text-sm font-medium text-slate-400">
+                <li className="flex items-center gap-2 text-brand-primary">
+                  <BarChart3 size={16} /> Dashboard
+                </li>
+                <li className="flex items-center gap-2 hover:text-slate-200 cursor-pointer transition-colors">
+                  <Globe2 size={16} /> Geo Analytics
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+      </header>
+
+      {/* Main Content */}
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-col gap-2">
+          <div className="flex items-center gap-2 text-rose-500">
+            <Zap size={20} fill="currentColor" />
+            <span className="text-sm font-bold uppercase tracking-widest">Live Now</span>
+          </div>
+          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Trending <span className="text-slate-500 underline decoration-brand-primary/30">URLs</span>
+          </h1>
+          <p className="max-w-2xl text-slate-400">
+            Monitoramento em tempo real das URLs com maior engajamento e detecção automática de viralização.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+        {/* Nossa Lista de Trending */}
+        <section className="mt-12">
+          <TrendingList />
+        </section>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+        {/* Placeholder para os próximos componentes (Gráficos) */}
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="h-64 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20 flex items-center justify-center">
+            <span className="text-slate-600 font-medium">Heatmap Chart (Coming Soon)</span>
+          </div>
+          <div className="h-64 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20 flex items-center justify-center">
+            <span className="text-slate-600 font-medium">Geo Location (Coming Soon)</span>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Footer Simples */}
+      <footer className="mt-20 border-t border-slate-900 py-10 text-center">
+        <p className="text-sm text-slate-600">
+          Built with Clean Architecture, PHP 8.4 and React.
+        </p>
+      </footer>
+    </div>
+  );
 }
-
-export default App

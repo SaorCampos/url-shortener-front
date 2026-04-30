@@ -1,7 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 body {
   @apply bg-slate-950 text-slate-50 antialiased;
+}
+
+@theme {
+  --color-brand-primary: #38bdf8;
+  --color-brand-dark: #0f172a;
+  --color-brand-viral: #f43f5e;
 }
