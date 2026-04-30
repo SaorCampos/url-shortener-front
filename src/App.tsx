@@ -1,5 +1,7 @@
-import { TrendingList } from './presentation/components/trending/trending-list';
-import { BarChart3, Globe2, Link2, Zap } from 'lucide-react';
+import { CountryRanking } from "./presentation/components/analytics/country-ranking";
+import { HourHeatmap } from "./presentation/components/analytics/hour-heatmap";
+import { TrendingList } from "./presentation/components/trending/trending-list";
+import { BarChart3, Globe2, Link2, Zap } from "lucide-react";
 
 export default function App() {
   return (
@@ -16,7 +18,7 @@ export default function App() {
                 URL<span className="text-brand-primary">SHRT</span>
               </span>
             </div>
-            
+
             <nav className="hidden md:block">
               <ul className="flex gap-8 text-sm font-medium text-slate-400">
                 <li className="flex items-center gap-2 text-brand-primary">
@@ -36,29 +38,31 @@ export default function App() {
         <div className="mb-8 flex flex-col gap-2">
           <div className="flex items-center gap-2 text-rose-500">
             <Zap size={20} fill="currentColor" />
-            <span className="text-sm font-bold uppercase tracking-widest">Live Now</span>
+            <span className="text-sm font-bold uppercase tracking-widest">
+              Live Now
+            </span>
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Trending <span className="text-slate-500 underline decoration-brand-primary/30">URLs</span>
+            Trending{" "}
+            <span className="text-slate-500 underline decoration-brand-primary/30">
+              URLs
+            </span>
           </h1>
           <p className="max-w-2xl text-slate-400">
-            Monitoramento em tempo real das URLs com maior engajamento e detecção automática de viralização.
+            Monitoramento em tempo real das URLs com maior engajamento e
+            detecção automática de viralização.
           </p>
         </div>
 
-        {/* Nossa Lista de Trending */}
+        {/* Lista de Trending */}
         <section className="mt-12">
           <TrendingList />
         </section>
 
         {/* Placeholder para os próximos componentes (Gráficos) */}
         <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <div className="h-64 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20 flex items-center justify-center">
-            <span className="text-slate-600 font-medium">Heatmap Chart (Coming Soon)</span>
-          </div>
-          <div className="h-64 rounded-2xl border border-dashed border-slate-800 bg-slate-900/20 flex items-center justify-center">
-            <span className="text-slate-600 font-medium">Geo Location (Coming Soon)</span>
-          </div>
+          <HourHeatmap code="1Frbb7" />
+          <CountryRanking code="1Frbb7" />
         </div>
       </main>
 
