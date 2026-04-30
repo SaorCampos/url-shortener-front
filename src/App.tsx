@@ -1,9 +1,12 @@
 import { CountryRanking } from "./presentation/components/analytics/country-ranking";
 import { HourHeatmap } from "./presentation/components/analytics/hour-heatmap";
+import { TopUrlsList } from "./presentation/components/top/top-urls-list";
 import { TrendingList } from "./presentation/components/trending/trending-list";
 import { BarChart3, Globe2, Link2, Zap } from "lucide-react";
+import { useState } from 'react';
 
 export default function App() {
+  const [selectedCode, setSelectedCode] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50">
       {/* Header Fixo */}
@@ -35,35 +38,52 @@ export default function App() {
 
       {/* Main Content */}
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-rose-500">
-            <Zap size={20} fill="currentColor" />
-            <span className="text-sm font-bold uppercase tracking-widest">
-              Live Now
-            </span>
+        {/* Seção Superior: Listas */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          
+          {/* Coluna 1 & 2: Trending (Mestre) */}
+          <div className="lg:col-span-2">
+             <div className="mb-6">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                   <Zap className="text-rose-500" size={24} fill="currentColor" /> Trending Now
+                </h2>
+             </div>
+             <TrendingList 
+                onSelect={setSelectedCode} 
+                selectedCode={selectedCode || undefined} 
+             />
           </div>
-          <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Trending{" "}
-            <span className="text-slate-500 underline decoration-brand-primary/30">
-              URLs
-            </span>
-          </h1>
-          <p className="max-w-2xl text-slate-400">
-            Monitoramento em tempo real das URLs com maior engajamento e
-            detecção automática de viralização.
-          </p>
+
+          {/* Coluna 3: Top 10 */}
+          <div className="lg:col-span-1">
+             <TopUrlsList 
+                onSelect={setSelectedCode} 
+                selectedCode={selectedCode || undefined} 
+             />
+          </div>
         </div>
 
-        {/* Lista de Trending */}
-        <section className="mt-12">
-          <TrendingList />
+        {/* Seção Inferior: Detalhes (Reativo) */}
+        <section className="mt-16 pt-16 border-t border-slate-900">
+          {selectedCode ? (
+            <>
+              <div className="mb-8">
+                <h2 className="text-3xl font-black italic">
+                  ANALYTICS: <span className="text-brand-primary uppercase">/{selectedCode}</span>
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <HourHeatmap code={selectedCode} />
+                <CountryRanking code={selectedCode} />
+              </div>
+            </>
+          ) : (
+            <div className="h-64 flex flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-800 bg-slate-900/10 text-slate-500">
+              <Link2 size={48} className="mb-4 opacity-20" />
+              <p className="font-medium">Selecione uma URL acima para ver os detalhes em tempo real</p>
+            </div>
+          )}
         </section>
-
-        {/* Placeholder para os próximos componentes (Gráficos) */}
-        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          <HourHeatmap code="1Frbb7" />
-          <CountryRanking code="1Frbb7" />
-        </div>
       </main>
 
       {/* Footer Simples */}

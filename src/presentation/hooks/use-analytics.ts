@@ -33,7 +33,7 @@ export const useUrlHeatmap = (code: string) => {
   });
 };
 
-export const useMinuteStats = (code:string, minutes: 60) => {
+export const useMinuteStats = (code: string, minutes: number) => {
     return useQuery({
       queryKey: ['minuteStats', code, minutes],
       queryFn: () => analyticsRepo.getMinuteStats(code, minutes),
