@@ -1,0 +1,15 @@
+services:
+  url-shortener-front:
+    build:
+      context: .
+      args:
+        - VITE_API_URL=http://localhost:8011/api
+    ports:
+      - "3000:80"
+    container_name: url-shrt-frontend
+    networks:
+      - link_network
+
+networks:
+  link_network:
+    external: true
