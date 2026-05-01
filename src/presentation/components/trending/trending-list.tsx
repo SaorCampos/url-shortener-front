@@ -2,7 +2,12 @@ import { useTrending } from '../../hooks/use-analytics';
 import { TrendingCard } from './trending-card';
 import { Loader2 } from 'lucide-react';
 
-export function TrendingList() {
+interface TrendingListProps {
+  onSelect: (code: string) => void;
+  selectedCode?: string | null;
+}
+
+export function TrendingList({ onSelect, selectedCode }: TrendingListProps) {
   const { data, isLoading, isError } = useTrending();
 
   if (isLoading) {
@@ -24,7 +29,7 @@ export function TrendingList() {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {data?.map((url) => (
-        <TrendingCard key={url.code} url={url} />
+        <TrendingCard key={url.code} url={url} onSelect={onSelect} isSelected={selectedCode === url.code} />
       ))}
     </div>
   );

@@ -30,6 +30,7 @@ export const useUrlHeatmap = (code: string) => {
     queryKey: ['heatmap', code],
     queryFn: () => analyticsRepo.getHourHeatmap(code),
     enabled: !!code,
+    refetchInterval: 60000,
   });
 };
 
@@ -38,7 +39,7 @@ export const useMinuteStats = (code: string, minutes: number) => {
       queryKey: ['minuteStats', code, minutes],
       queryFn: () => analyticsRepo.getMinuteStats(code, minutes),
       enabled: !!code,
-      refetchInterval: 3600000
+      refetchInterval: 60000
     });
 }
 
