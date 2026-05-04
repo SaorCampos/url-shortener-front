@@ -26,23 +26,32 @@ export default function App() {
               </span>
             </div>
 
-            <nav>
-              <ul className="flex gap-4 md:gap-8 text-xs md:text-sm font-bold uppercase tracking-widest">
-                <li
-                  onClick={() => setCurrentView("dashboard")}
-                  className={`flex items-center gap-2 cursor-pointer transition-all ${currentView === "dashboard" ? "text-brand-primary" : "text-slate-500 hover:text-slate-200"}`}
-                >
-                  <BarChart3 size={16} />{" "}
-                  <span className="hidden sm:inline">Dashboard</span>
-                </li>
-                <li
-                  onClick={() => setCurrentView("geo")}
-                  className={`flex items-center gap-2 cursor-pointer transition-all ${currentView === "geo" ? "text-brand-primary" : "text-slate-500 hover:text-slate-200"}`}
-                >
-                  <Globe2 size={16} />{" "}
-                  <span className="hidden sm:inline">Geo Analytics</span>
-                </li>
-              </ul>
+            <nav className="sticky top-0 z-999 w-full border-b border-white/5 bg-[#020617]/80 backdrop-blur-md">
+              <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 bg-brand-primary/20 rounded-lg">
+                    <Link2 className="text-brand-primary" size={20} />
+                  </div>
+                  <span className="font-black text-xl tracking-tighter text-white">
+                    URLSHRT
+                  </span>
+                </div>
+
+                <div className="flex gap-4 md:gap-8">
+                  <button
+                    className="text-xs font-bold text-brand-primary tracking-widest flex items-center gap-2"
+                    onClick={() => setCurrentView("dashboard")}
+                  >
+                    <BarChart3 size={14} /> DASHBOARD
+                  </button>
+                  <button
+                    className="text-xs font-bold text-slate-500 hover:text-white transition-colors tracking-widest flex items-center gap-2"
+                    onClick={() => setCurrentView("geo")}
+                  >
+                    <Globe2 size={14} /> GEO ANALYTICS
+                  </button>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
