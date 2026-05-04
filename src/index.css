@@ -12,7 +12,25 @@ body {
 
 @layer components {
   .bg-grid-slate {
-    background-image: radial-gradient(circle at 2px 2px, rgba(30, 41, 59, 0.5) 1px, transparent 0);
+    background-image: radial-gradient(
+      circle at 2px 2px,
+      rgba(30, 41, 59, 0.5) 1px,
+      transparent 0
+    );
     background-size: 32px 32px;
   }
+}
+
+.leaflet-tooltip.custom-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-tooltip-top.custom-tooltip:before,
+.leaflet-tooltip-bottom.custom-tooltip:before,
+.leaflet-tooltip-left.custom-tooltip:before,
+.leaflet-tooltip-right.custom-tooltip:before {
+  border: none !important;
 }

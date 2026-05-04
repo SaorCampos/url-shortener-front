@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Zap, SearchCode} from "lucide-react";
-import { UrlSearchBar } from '../search/url-search-bar';
-import { TrendingList } from '../trending/trending-list';
-import { TopUrlsList } from '../top/top-urls-list';
-import { AnalyticsHeader } from '../common/analytics-header';
-import { HourHeatmap } from '../analytics/hour-heatmap'; 
-import { CountryRanking } from '../analytics/country-ranking';
+import { useState } from "react";
+import { Zap, SearchCode } from "lucide-react";
+import { UrlSearchBar } from "../search/url-search-bar";
+import { TrendingList } from "../trending/trending-list";
+import { TopUrlsList } from "../top/top-urls-list";
+import { AnalyticsHeader } from "../common/analytics-header";
+import { HourHeatmap } from "../analytics/hour-heatmap";
+import { CountryRanking } from "../analytics/country-ranking";
 
 export function DashboardPage() {
   const [selectedCode, setSelectedCode] = useState<string | null>(null);
@@ -18,7 +18,8 @@ export function DashboardPage() {
           Rastreie qualquer <span className="text-brand-primary">Link.</span>
         </h1>
         <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg">
-          Insira o código de encurtamento abaixo para acessar estatísticas detalhadas.
+          Insira o código de encurtamento abaixo para acessar estatísticas
+          detalhadas.
         </p>
         <UrlSearchBar onSearch={setSelectedCode} />
       </section>
@@ -28,12 +29,19 @@ export function DashboardPage() {
         <div className="lg:col-span-8">
           <div className="mb-6">
             <h2 className="text-2xl font-black flex items-center gap-3">
-              <Zap className="text-rose-500 animate-pulse" size={24} fill="currentColor" />
+              <Zap
+                className="text-rose-500 animate-pulse"
+                size={24}
+                fill="currentColor"
+              />
               TRENDING <span className="text-slate-600 font-light">URLS</span>
             </h2>
           </div>
           {/* O TrendingList agora deve gerenciar os skeletons internamente usando o isLoading do useTrending */}
-          <TrendingList onSelect={setSelectedCode} selectedCode={selectedCode} />
+          <TrendingList
+            onSelect={setSelectedCode}
+            selectedCode={selectedCode}
+          />
         </div>
 
         <div className="lg:col-span-4">
@@ -47,8 +55,9 @@ export function DashboardPage() {
         {selectedCode ? (
           <div className="animate-in fade-in zoom-in-95 duration-500">
             {/* Voltamos com o Header que eu tinha "sumido" */}
-            <AnalyticsHeader 
+            <AnalyticsHeader
               title={`Analytics: /${selectedCode}`}
+              selectedCode={selectedCode}
               onClose={() => setSelectedCode(null)}
             />
 
@@ -59,8 +68,13 @@ export function DashboardPage() {
           </div>
         ) : (
           <div className="group flex flex-col items-center justify-center py-32 rounded-[3rem] border-2 border-dashed border-slate-900 bg-slate-950/20 text-slate-600 transition-all hover:border-slate-800">
-            <SearchCode size={80} className="opacity-20 group-hover:text-brand-primary transition-all" />
-            <p className="text-xl font-bold text-slate-400 mt-4">Aguardando seleção...</p>
+            <SearchCode
+              size={80}
+              className="opacity-20 group-hover:text-brand-primary transition-all"
+            />
+            <p className="text-xl font-bold text-slate-400 mt-4">
+              Aguardando seleção...
+            </p>
           </div>
         )}
       </section>
