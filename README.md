@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+### **URLSHRT - Dashboard de Analytics**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
+# PT-BR
 
-Currently, two official plugins are available:
+Um painel de alta performance para monitoramento de cliques e engajamento geográfico em tempo real, construído com foco em UI/UX polida e velocidade.
+Precisa ser usado em conjunto com o Backend: https://github.com/SaorCampos/url_shortener
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### **🚀 Tecnologias**
+| Categoria | Tecnologia |
+| :--- | :--- |
+| **Framework** | React 19 + Vite |
+| **Estilização** | Tailwind CSS 4 + Lucide React |
+| **Gráficos** | Recharts |
+| **Geolocalização** | React Leaflet (Heatmaps) |
+| **Estado/API** | TanStack Query + Axios |
+| **Infra** | Docker + Makefile |
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### **🛠️ Setup do Projeto**
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### **Opção 1: Via Makefile (Recomendado)**
+Se você já tem o Docker e o Make instalados, basta rodar o comando principal que já configura o ambiente:
+```bash
+make setup
 ```
+**Acessar:** `http://localhost:3000`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+#### **Opção 2: Manual (NPM)**
+Caso queira rodar fora do container para desenvolvimento rápido:
+1. Instale as dependências:
+   ```bash
+   npm install
+   ```
+2. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### **✨ Funcionalidades**
+*   **Trending URLs**: Visualização de cards com as URLs mais acessadas, incluindo indicadores de viralização (`Zap`) e crescimento.
+*   **Mapa de Calor Geográfico**: Visualização precisa de onde vêm os cliques usando o motor Leaflet com tooltips dinâmicos.
+*   **Engajamento por Hora**: Gráfico de barras detalhando o comportamento dos usuários ao longo do dia.
+*   **Distribuição por Países**: Ranking de tráfego segmentado por localização.
+*   **Dark Mode Nativo**: Interface otimizada para baixo cansaço visual com elementos em *Glassmorphism*.
+
+---
+
+### **📸 Screenshots**
+
+1. **Dashboard Geral**: - Visão geral dos cliques e tendências.
+<p align="center"><img src="docs/dashboard.png" width="800"></p>
+<p align="center"><img src="docs/dashboard-1.png" width="800"></p>
+
+2. **Mapa de Calor**: Detalhe da distribuição geográfica dos acessos.
+<p align="center"><img src="docs/geo-heatmap.png" width="800"></p>
+<p align="center"><img src="docs/geo-heatmap-1.png" width="800"></p>
+---
