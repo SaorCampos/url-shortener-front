@@ -20,7 +20,7 @@ export function TrendingCard({ url, onSelect, isSelected }: TrendingCardProps) {
           : "border-slate-800 bg-slate-950/40 hover:border-slate-700"
       }`}
     >
-      {/* 1. Badge de Viralização (Fix: Melhorado para evitar o bug do losango) */}
+      {/* 1. Badge de Viralização */}
       {url.viral && (
         <div className="absolute -right-2 -top-2 flex items-center justify-center">
           <div className="absolute h-12 w-12 bg-rose-500/20 blur-xl animate-pulse" />
@@ -30,7 +30,7 @@ export function TrendingCard({ url, onSelect, isSelected }: TrendingCardProps) {
         </div>
       )}
 
-      {/* 2. Glow Interno (Apenas quando selecionado) */}
+      {/* 2. Glow Interno */}
       {isSelected && (
         <div className="absolute inset-0 bg-linear-to-br from-brand-primary/5 via-transparent to-transparent pointer-events-none" />
       )}
